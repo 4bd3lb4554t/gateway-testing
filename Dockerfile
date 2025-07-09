@@ -1,9 +1,10 @@
 FROM --platform=linux/amd64 node:20-slim
 
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends openssl libssl-dev vim
-RUN rm -rf /var/lib/apt/lists/*
+# RUN apt-get update
 
+RUN apt-get install -y --no-install-recommends openssl libssl-dev vim
+
+RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /gateway
 
