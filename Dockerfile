@@ -1,10 +1,13 @@
 FROM --platform=linux/amd64 node:20-slim
 
-RUN apt-get update && apt-get install -y openssl libssl-dev vim
+# Combine apt-get update and install with cleanup to reduce image size
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends openssl libssl-dev vim && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /gateway
 
-COPY ./*.json .
+COPY ./*.json ./
 
 RUN npm install
 
@@ -22,4 +25,4 @@ RUN npm run build
 
 EXPOSE 4000
 
-CMD ["npm" , "run" , "start"]
+CMD ["npm", "run", "start"]
