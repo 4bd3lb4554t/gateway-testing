@@ -1,9 +1,9 @@
 FROM --platform=linux/amd64 node:20-slim
 
-# Combine apt-get update and install with cleanup to reduce image size
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends openssl libssl-dev vim && \
-    rm -rf /var/lib/apt/lists/*
+RUN apt-get update
+RUN apt-get install -y --no-install-recommends openssl libssl-dev vim
+RUN rm -rf /var/lib/apt/lists/*
+
 
 WORKDIR /gateway
 
